@@ -57,7 +57,7 @@ class Navbar extends BaseComponent {
         const basePath = this.isRelativePath ? '../' : './';
         
         return Navigation.items.map(item => {
-            const href = item.href.replace('./', basePath);
+            const href = this.isRelativePath ? this.hrefFromPagesFolder(item) : item.href.replace('./', basePath);
             const isActive = this.isActiveNavItem(item.href);
             
             return `
@@ -76,7 +76,9 @@ class Navbar extends BaseComponent {
      */
     renderCTA() {
         const basePath = this.isRelativePath ? '../' : './';
-        const href = Navigation.cta.href.replace('./', basePath);
+        const href = this.isRelativePath
+            ? 'menu.html'
+            : Navigation.cta.href.replace('./', basePath);
 
         return `
             <li class="nav-item ms-lg-2">
@@ -106,6 +108,20 @@ class Navbar extends BaseComponent {
         }
 
         return false;
+    }
+
+    /** Enlaces cuando el HTML está en /pages/ */
+    hrefFromPagesFolder(item) {
+        switch (item.route) {
+            case '/':
+                return '../index.html';
+            case '/menu':
+                return 'menu.html';
+            case '/about':
+                return 'about.html';
+            default:
+                return item.href.replace('./', '../');
+        }
     }
 }
 

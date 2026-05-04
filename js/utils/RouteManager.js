@@ -33,11 +33,14 @@ class RouteManager {
      */
     detectRoute() {
         const pathname = window.location.pathname;
-        
+        const segments = pathname.split('/').filter(Boolean);
+        const lastSegment = (segments[segments.length - 1] || '').toLowerCase();
+        const base = lastSegment.replace(/\.html?$/i, '');
+
         let route = '/';
-        if (pathname.includes('menu.html')) {
+        if (base === 'menu' || lastSegment.startsWith('menu.')) {
             route = '/menu';
-        } else if (pathname.includes('about.html')) {
+        } else if (base === 'about' || lastSegment.startsWith('about.')) {
             route = '/about';
         }
 

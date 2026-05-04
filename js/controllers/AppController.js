@@ -48,9 +48,10 @@ class AppController {
      */
     initFooter() {
         const existingFooter = DOMManager.select('footer');
-        
+        const isInPagesFolder = window.location.pathname.includes('/pages/');
+
         if (existingFooter && existingFooter.parentNode) {
-            const newFooter = new Footer();
+            const newFooter = new Footer({ isInPagesFolder });
             existingFooter.parentNode.replaceChild(newFooter.getElement(), existingFooter);
         }
     }

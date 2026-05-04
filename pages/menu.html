@@ -13,6 +13,129 @@
         href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito+Sans:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../CSS/styles.css">
+    <style>
+        .menu-page {
+            position: relative;
+        }
+
+        .menu-intro {
+            max-width: 640px;
+            margin-inline: auto;
+        }
+
+        .menu-intro .menu-divider {
+            width: 120px;
+            height: 4px;
+            margin: 0.75rem auto 0;
+            border-radius: 999px;
+            background: linear-gradient(90deg, transparent, var(--krusty-yellow), transparent);
+            box-shadow: 0 0 12px rgba(253, 216, 53, 0.45);
+        }
+
+        .menu-card {
+            background: linear-gradient(155deg, rgba(10, 10, 10, 0.65), rgba(40, 30, 25, 0.45));
+            border: 1px solid rgba(253, 216, 53, 0.55);
+            border-radius: 1rem;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            padding: 1.35rem 1.35rem 1.1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            height: 100%;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(253, 216, 53, 0.85);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(211, 47, 47, 0.25);
+        }
+
+        .menu-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding-bottom: 0.85rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-card-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            background: radial-gradient(circle at 30% 30%, rgba(253, 216, 53, 0.35), rgba(211, 47, 47, 0.2));
+            color: var(--krusty-yellow);
+            flex-shrink: 0;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+        }
+
+        .menu-card-title {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--krusty-yellow);
+            letter-spacing: 0.06em;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .menu-list .menu-item {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .menu-item-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.14);
+            border-radius: 0.35rem;
+            transition: background 0.15s ease;
+        }
+
+        .menu-item:last-child .menu-item-inner {
+            border-bottom: none;
+            padding-bottom: 0.25rem;
+        }
+
+        .menu-item-inner:hover {
+            background: rgba(253, 216, 53, 0.06);
+            padding-left: 0.35rem;
+            padding-right: 0.35rem;
+            margin-left: -0.35rem;
+            margin-right: -0.35rem;
+        }
+
+        .menu-item-name {
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.98rem;
+        }
+
+        .menu-item-desc {
+            display: block;
+            margin-top: 0.2rem;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.82rem;
+            line-height: 1.35;
+        }
+
+        .menu-item-price {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            color: var(--krusty-yellow);
+            white-space: nowrap;
+            text-shadow: 2px 2px 0 rgba(183, 28, 28, 0.6);
+            line-height: 1.15;
+            padding-top: 0.1rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,31 +176,215 @@
                         <a class="nav-link" href="about.html">NOSOTROS</a>
                     </li>
                     <li class="nav-item ms-lg-2">
-                        <a href="menu.html" class="btn btn-outline-light btn-sm me-2">PEDIR</a>
+                        <a href="#carta" class="btn btn-outline-light btn-sm me-2">PEDIR</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Header -->
-    <header class="hero d-flex align-items-center justify-content-center" style="min-height: 40vh;">
-        <div class="text-center z-1">
-            <h1 class="display-1 text-warning"
-                style="font-family: var(--font-heading); text-shadow: 4px 4px 0 var(--krusty-red);">GALLEY GRUB</h1>
-            <p class="lead text-white">Comida grasienta para marineros hambrientos</p>
-        </div>
-        <div class="bubbles">
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-        </div>
-    </header>
-
-    <!-- Menu Content (será generado dinámicamente) -->
-    <section class="py-5" data-section="menu">
+    <!-- Menu Content -->
+    <section id="carta" class="menu-page py-5">
         <div class="container">
-            <!-- El menú será renderizado aquí por el controlador -->
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <div class="menu-intro">
+                        <h2 class="text-warning mb-2">NUESTRA CARTA</h2>
+                        <div class="menu-divider"></div>
+                        <p class="text-white-50 mb-0 mt-3">Sabores de Fondo de Bikini para todos los gustos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="menu-card">
+                        <div class="menu-card-header">
+                            <span class="menu-card-icon" aria-hidden="true">🍔</span>
+                            <h3 class="menu-card-title">Cangreburgers</h3>
+                        </div>
+                        <ul class="list-unstyled menu-list mb-0">
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Cangreburger Clásica</span>
+                                        <small class="menu-item-desc">Pan suave con carne, lechuga, queso y la salsa secreta de la casa.</small>
+                                    </div>
+                                    <span class="menu-item-price">7,90&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Doble Cangreburger</span>
+                                        <small class="menu-item-desc">Doble medallón y salsa extra para el apetito de verdad.</small>
+                                    </div>
+                                    <span class="menu-item-price">10,50&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Cangreburger Picante</span>
+                                        <small class="menu-item-desc">Toque marinero ahumado con chilli y pepinillo en vinagre.</small>
+                                    </div>
+                                    <span class="menu-item-price">8,90&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Cangreburger Veggie de Algas</span>
+                                        <small class="menu-item-desc">Medallón vegetal cremoso de algas sobre pan con semillas tostadas.</small>
+                                    </div>
+                                    <span class="menu-item-price">8,20&nbsp;€</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="menu-card">
+                        <div class="menu-card-header">
+                            <span class="menu-card-icon" aria-hidden="true">🥨</span>
+                            <h3 class="menu-card-title">Entrantes</h3>
+                        </div>
+                        <ul class="list-unstyled menu-list mb-0">
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Aros de cebolla marina</span>
+                                        <small class="menu-item-desc">Crujientes por fuera y suaves dentro, ideal para picar antes de pedir burger.</small>
+                                    </div>
+                                    <span class="menu-item-price">4,50&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Papas de coral</span>
+                                        <small class="menu-item-desc">Clásicas fritura marina con salsa de cheddar suave opcional.</small>
+                                    </div>
+                                    <span class="menu-item-price">3,90&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Alitas del océano</span>
+                                        <small class="menu-item-desc">Adobadas dulces y picantes servidas muy calientes para compartir.</small>
+                                    </div>
+                                    <span class="menu-item-price">6,20&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Nachos Bikini con queso</span>
+                                        <small class="menu-item-desc">Triángulos crujientes con queso derretido, jalapeño y un toque fresco.</small>
+                                    </div>
+                                    <span class="menu-item-price">5,80&nbsp;€</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="menu-card">
+                        <div class="menu-card-header">
+                            <span class="menu-card-icon" aria-hidden="true">🥤</span>
+                            <h3 class="menu-card-title">Bebidas</h3>
+                        </div>
+                        <ul class="list-unstyled menu-list mb-0">
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Refresco submarino</span>
+                                        <small class="menu-item-desc">Con gas bien frío, perfecto junto al menú rápido del Crustáceo.</small>
+                                    </div>
+                                    <span class="menu-item-price">2,20&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Limonada de medusa</span>
+                                        <small class="menu-item-desc">Cítrica, ligera y con hielo, ideal cuando hace bochorno en Bikini Bottom.</small>
+                                    </div>
+                                    <span class="menu-item-price">2,80&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Batido de algas</span>
+                                        <small class="menu-item-desc">Crema irresistible vainilla-menta, perfecto para terminar después de burger.</small>
+                                    </div>
+                                    <span class="menu-item-price">3,50&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Agua mineral</span>
+                                        <small class="menu-item-desc">Botella grande fría sin gas ni complicaciones para acompañar la comida.</small>
+                                    </div>
+                                    <span class="menu-item-price">1,80&nbsp;€</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="menu-card">
+                        <div class="menu-card-header">
+                            <span class="menu-card-icon" aria-hidden="true">🍰</span>
+                            <h3 class="menu-card-title">Postres</h3>
+                        </div>
+                        <ul class="list-unstyled menu-list mb-0">
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Tarta de piña</span>
+                                        <small class="menu-item-desc">Base crujiente, crema fresca de limón-piña lista para golosos tropicales.</small>
+                                    </div>
+                                    <span class="menu-item-price">4,20&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Helado de coral</span>
+                                        <small class="menu-item-desc">Tres bolas pastel de fresa-mar y virutas caramelizadas muy suaves.</small>
+                                    </div>
+                                    <span class="menu-item-price">3,80&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Brownie del fondo marino</span>
+                                        <small class="menu-item-desc">Chocolate intenso, caliente dentro y un toque de sal marina opcional.</small>
+                                    </div>
+                                    <span class="menu-item-price">4,60&nbsp;€</span>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <div class="menu-item-inner">
+                                    <div class="flex-grow-1">
+                                        <span class="menu-item-name">Cookie de krabby chips</span>
+                                        <small class="menu-item-desc">Galleta dorada enorme recién hornada para terminar muy redondo.</small>
+                                    </div>
+                                    <span class="menu-item-price">3,20&nbsp;€</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

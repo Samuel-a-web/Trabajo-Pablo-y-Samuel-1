@@ -8,11 +8,13 @@ class Footer extends BaseComponent {
         super(props);
         this.restaurantName = props.restaurantName || 'El Crustáceo Crujiente';
         this.year = props.year || new Date().getFullYear();
+        this.isInPagesFolder = props.isInPagesFolder === true;
     }
 
     render() {
         const footer = document.createElement('footer');
         footer.className = 'footer pt-5 pb-3';
+        const aboutHref = this.isInPagesFolder ? 'about.html' : './pages/about.html';
 
         footer.innerHTML = `
             <div class="container">
@@ -25,7 +27,7 @@ class Footer extends BaseComponent {
                     <div class="col-md-4 mb-4">
                         <h4 class="text-warning mb-3">ENLACES</h4>
                         <ul class="list-unstyled">
-                            <li><a href="./pages/about.html" class="text-white-50 text-decoration-none">Trabaja con nosotros</a></li>
+                            <li><a href="${aboutHref}" class="text-white-50 text-decoration-none">Trabaja con nosotros</a></li>
                             <li><a href="#" class="text-white-50 text-decoration-none">Aviso Legal</a></li>
                             <li><a href="#" class="text-white-50 text-decoration-none">Política de Privacidad</a></li>
                         </ul>

@@ -25,7 +25,7 @@ const Navigation = {
 
     cta: {
         label: 'PEDIR',
-        href: './pages/menu.html',
+        href: './pages/menu.html#carta',
         class: 'btn btn-outline-light btn-sm'
     },
 

@@ -18,18 +18,19 @@ class MenuController {
      */
     renderMenu() {
         const menuSection = DOMManager.select('[data-section="menu"]');
-        if (!menuSection) return;
+        const container = menuSection?.querySelector('.container') || menuSection;
+        if (!container) return;
 
         const items = this.menuModel.getAllItems();
         
         // Renderizar sección de burgers
-        this.renderMenuCategory(menuSection, 'burgers', 'CANGREBURGERS', items.burgers);
+        this.renderMenuCategory(container, 'burgers', 'CANGREBURGERS', items.burgers);
         
         // Renderizar sección de acompañamientos
-        this.renderMenuCategory(menuSection, 'sides', 'ACOMPAÑAMIENTOS (CORAL BITS)', items.sides);
+        this.renderMenuCategory(container, 'sides', 'ACOMPAÑAMIENTOS (CORAL BITS)', items.sides);
         
         // Renderizar sección de bebidas
-        this.renderMenuCategory(menuSection, 'drinks', 'BEBIDAS', items.drinks);
+        this.renderMenuCategory(container, 'drinks', 'BEBIDAS', items.drinks);
 
         this.eventEmitter.emit('menuLoad', { items });
     }
