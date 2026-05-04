@@ -1,0 +1,36 @@
+<section id="carta" class="menu-page py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <div class="menu-intro">
+          <h2 class="text-warning mb-2">NUESTRA CARTA</h2>
+          <div class="menu-divider"></div>
+          <p class="text-white-50 mb-0 mt-3">Sabores de Fondo de Bikini para todos los gustos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6" *ngFor="let category of categories">
+        <div class="menu-card">
+          <div class="menu-card-header">
+            <span class="menu-card-icon" aria-hidden="true">{{ category.icon }}</span>
+            <h3 class="menu-card-title">{{ category.title }}</h3>
+          </div>
+          <ul class="list-unstyled menu-list mb-0">
+            <li class="menu-item" *ngFor="let item of category.items">
+              <div class="menu-item-inner">
+                <div class="flex-grow-1">
+                  <span class="menu-item-name">{{ item.nombre }}</span>
+                  <small class="menu-item-desc">{{ item.descripcion }}</small>
+                </div>
+                <span class="menu-item-price">{{ item.precio }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,50 @@
+<section class="py-5 mt-5">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="about-panel p-4 p-md-5">
+          <h1 class="display-4 text-warning mb-4 about-history-title">NUESTRA HISTORIA</h1>
+          <p class="lead text-white mb-3">Establecido en 1980 en Fondo de Bikini.</p>
+          <p class="text-white-50">El Crustáceo Crujiente era originalmente una casa de retiro llamada "Rusty Krab", que fue adquirida por Don Eugenio Cangrejo. Convertida en el restaurante más exitoso de Fondo de Bikini, es el único lugar donde puedes encontrar la genuina Cangreburger.</p>
+          <p class="text-white-50 mb-0">Nuestra filosofía es simple: <strong class="text-warning">"El dinero siempre tiene la razón"</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="about-panel p-4 p-md-5">
+          <h3 class="about-schedule-title mb-3">HORARIO</h3>
+          <div data-section="schedule">
+            <ul class="list-unstyled text-white mb-0 text-start schedule-list">
+              @for (item of schedule; track item.day) {
+                <li class="mb-2"><strong>{{ item.day }}:</strong> {{ item.hours }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center mt-5">
+      <div class="col-12 mb-5">
+        <h2 class="text-white display-4 about-crew-title">LA TRIPULACIÓN</h2>
+      </div>
+
+      @for (member of crew; track member.id) {
+        <div class="col-md-4 mb-4">
+          <div class="card crew-card h-100">
+            <div class="d-flex align-items-center justify-content-center p-3 crew-emoji">
+              {{ member.emoji }}
+            </div>
+            <div class="card-body text-start">
+              <h3 class="text-warning crew-name">{{ member.name }}</h3>
+              <p class="text-white-50 mb-0">{{ member.description }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
