@@ -1,22 +1,72 @@
 <footer class="footer pt-5 pb-3">
   <div class="container">
     <div class="row justify-content-between">
-      <div class="col-lg-6 col-md-7 mb-4">
-        <h4 class="text-warning mb-3">EL CRUSTÁCEO CRUJIENTE</h4>
-        <p class="text-white-50 mb-0">El mejor restaurante de comida rápida de Fondo de Bikini. Propiedad de Eugenio H. Cangrejo.</p>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <h4 class="text-warning mb-3">
+          <i class="bi bi-shop me-2"></i>EL CRUSTÁCEO CRUJIENTE
+        </h4>
+        <p class="text-white-50 mb-3">El mejor restaurante de comida rápida de Fondo de Bikini. Propiedad de Eugenio H. Cangrejo.</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="btn btn-outline-light btn-sm rounded-circle social-icon"
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Facebook">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="#" class="btn btn-outline-light btn-sm rounded-circle social-icon"
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="#" class="btn btn-outline-light btn-sm rounded-circle social-icon"
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Twitter / X">
+            <i class="bi bi-twitter-x"></i>
+          </a>
+          <a href="#" class="btn btn-outline-light btn-sm rounded-circle social-icon"
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="TikTok">
+            <i class="bi bi-tiktok"></i>
+          </a>
+        </div>
       </div>
-      <div class="col-lg-4 col-md-5 mb-4">
-        <h4 class="text-warning mb-3">ENLACES</h4>
-        <ul class="list-unstyled mb-0">
-          <li><a routerLink="/about" class="text-white-50 text-decoration-none">Trabaja con nosotros</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Aviso Legal</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Política de Privacidad</a></li>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h4 class="text-warning mb-3">
+          <i class="bi bi-link-45deg me-2"></i>ENLACES
+        </h4>
+        <ul class="list-unstyled mb-0 footer-links">
+          <li class="mb-2">
+            <a routerLink="/inicio" class="text-white-50 text-decoration-none footer-link">
+              <i class="bi bi-chevron-right me-1"></i>Inicio
+            </a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/menu" class="text-white-50 text-decoration-none footer-link">
+              <i class="bi bi-chevron-right me-1"></i>Carta
+            </a>
+          </li>
+          <li class="mb-2">
+            <a routerLink="/about" class="text-white-50 text-decoration-none footer-link">
+              <i class="bi bi-chevron-right me-1"></i>Nosotros
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h4 class="text-warning mb-3">
+          <i class="bi bi-geo-alt me-2"></i>CONTACTO
+        </h4>
+        <ul class="list-unstyled mb-0 text-white-50">
+          <li class="mb-2"><i class="bi bi-pin-map me-2"></i>831 Av. Fondo de Bikini</li>
+          <li class="mb-2"><i class="bi bi-telephone me-2"></i>+34 555 KRAB</li>
+          <li class="mb-2"><i class="bi bi-envelope me-2"></i>info&#64;crustaceo.bb</li>
         </ul>
       </div>
     </div>
-    <div class="text-center pt-4 border-top border-secondary">
-      <p class="text-white-50 mb-0">&copy; {{ year }} El Crustáceo Crujiente. Todos los derechos reservados.</p>
+    <hr class="border-secondary my-3">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start">
+        <p class="text-white-50 mb-0 small">&copy; {{ year }} El Crustáceo Crujiente. Todos los derechos reservados.</p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a href="#" class="text-white-50 text-decoration-none small me-3">Aviso Legal</a>
+        <a href="#" class="text-white-50 text-decoration-none small">Política de Privacidad</a>
+      </div>
     </div>
   </div>
 </footer>
-

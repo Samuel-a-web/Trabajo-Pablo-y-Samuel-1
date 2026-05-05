@@ -1,0 +1,114 @@
+<div class="container py-5 mt-5">
+  <div class="section-header text-center mb-5">
+    <h2 class="display-3 text-warning text-shadow-red">¡HAZ TU PEDIDO!</h2>
+    <div class="divider mx-auto"></div>
+    <p class="lead text-white-50 mt-3">Te llevamos el Crustáceo Crujiente directo a tu piña o roca.</p>
+  </div>
+
+  @if (orderConfirmed) {
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card bg-success bg-opacity-25 border-success text-center p-5 rounded-4 shadow-lg">
+          <i class="bi bi-check-circle-fill display-1 text-success mb-4"></i>
+          <h2 class="text-white">¡Pedido Confirmado!</h2>
+          <p class="text-white-50 fs-5 mt-3">Bob Esponja ya está en la parrilla preparando tu orden. Llegará a la dirección proporcionada muy pronto en el Delivery Submarino.</p>
+          <div class="mt-4">
+            <a routerLink="/inicio" class="btn btn-warning btn-lg fw-bold"><i class="bi bi-house-door-fill me-2"></i>Volver al Inicio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="row g-5">
+      <!-- Checkout Form -->
+      <div class="col-lg-8">
+        <div class="card p-4 rounded-4 h-100" style="background: rgba(43, 28, 22, 0.8);">
+          <h4 class="text-warning mb-4"><i class="bi bi-geo-alt-fill me-2"></i>Datos de Envío</h4>
+          <form (ngSubmit)="confirmOrder()" #orderForm="ngForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="name" class="form-label text-white-50">Nombre Completo *</label>
+                <input type="text" class="form-control bg-dark border-secondary text-white" id="name" 
+                       [(ngModel)]="formData.name" name="name" required placeholder="Ej. Patricio Estrella">
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="form-label text-white-50">Teléfono Submarino *</label>
+                <input type="tel" class="form-control bg-dark border-secondary text-white" id="phone" 
+                       [(ngModel)]="formData.phone" name="phone" required placeholder="Ej. 555-0198">
+              </div>
+              <div class="col-12">
+                <label for="address" class="form-label text-white-50">Dirección de Entrega *</label>
+                <input type="text" class="form-control bg-dark border-secondary text-white" id="address" 
+                       [(ngModel)]="formData.address" name="address" required placeholder="Ej. Calle Concha 120, Fondo de Bikini">
+              </div>
+              <div class="col-12">
+                <label for="notes" class="form-label text-white-50">Instrucciones Especiales</label>
+                <textarea class="form-control bg-dark border-secondary text-white" id="notes" rows="3" 
+                          [(ngModel)]="formData.notes" name="notes" placeholder="Ej. Sin pepinillos, por favor."></textarea>
+              </div>
+            </div>
+            <div class="mt-4 text-end">
+              <button type="submit" class="btn btn-danger btn-lg px-5 fw-bold shadow-lg" [disabled]="!orderForm.form.valid">
+                CONFIRMAR PEDIDO <i class="bi bi-arrow-right-circle ms-2"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Dynamic Cart Summary -->
+      <div class="col-lg-4">
+        <div class="card p-4 rounded-4" style="background: rgba(26, 10, 0, 0.9); border: 2px solid var(--krusty-yellow) !important;">
+          <h4 class="text-warning mb-4 text-center"><i class="bi bi-cart3 me-2"></i>Tu Ticket</h4>
+          
+          @if (cartService.cartItems().length === 0) {
+            <div class="text-center py-4">
+              <i class="bi bi-cart-x display-4 text-white-50 mb-3"></i>
+              <p class="text-white-50">Tu ticket está vacío.</p>
+              <a routerLink="/menu" class="btn btn-sm btn-outline-warning mt-2">Ir a la Carta</a>
+            </div>
+          } @else {
+            <div class="cart-items-container" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+              @for (item of cartService.cartItems(); track item.id) {
+                <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom border-secondary pe-2">
+                  <div class="d-flex flex-column">
+                    <h6 class="text-white mb-0">{{ item.nombre }}</h6>
+                    <div class="d-flex align-items-center mt-2 gap-2">
+                      <button class="btn btn-sm btn-dark border-secondary rounded-circle" style="width: 28px; height: 28px; padding: 0;" (click)="cartService.removeFromCart(item.id)"><i class="bi bi-dash"></i></button>
+                      <span class="text-white-50 fw-bold">{{ item.quantity }}x</span>
+                      <button class="btn btn-sm btn-dark border-secondary rounded-circle" style="width: 28px; height: 28px; padding: 0;" (click)="cartService.addToCart(item)"><i class="bi bi-plus"></i></button>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <button class="btn btn-link text-danger p-0 text-decoration-none mb-1 d-block w-100 text-end" (click)="cartService.removeFromCart(item.id, true)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                    <span class="text-warning fw-bold">{{ item.precio }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-3 mb-2">
+              <span class="text-white-50">Subtotal</span>
+              <span class="text-white">{{ cartService.cartTotalFormatted() }}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-white-50">Delivery Submarino</span>
+              <span class="text-success fw-bold">¡Gratis!</span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center pt-3 border-top border-warning">
+              <h5 class="text-white mb-0">TOTAL</h5>
+              <h3 class="text-warning mb-0">{{ cartService.cartTotalFormatted() }}</h3>
+            </div>
+            
+            <div class="mt-4 text-center">
+              <small class="text-white-50 fst-italic"><i class="bi bi-info-circle me-1"></i>Pagas al recibir en Doblo-Dólares (₴)</small>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

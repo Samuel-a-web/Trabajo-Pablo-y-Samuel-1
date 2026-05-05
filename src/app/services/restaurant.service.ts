@@ -9,26 +9,32 @@ export class RestaurantService {
       name: 'Bob Esponja',
       emoji: '🧽',
       description: 'Cocinero estrella del Crustáceo Crujiente. Siempre prepara cada Cangreburger con energía y una gran sonrisa.',
+      role: 'Cocinero Principal',
+      funFact: '¡Puede preparar hasta 1.000 Cangreburgers por hora! Vive en una piña debajo del mar junto a su mascota Gary.',
     },
     {
       id: 'calamardo',
       name: 'Calamardo',
       emoji: '🐙',
       description: 'Encargado de caja y atención al cliente. Mantiene el orden del local, aunque no siempre con el mejor humor.',
+      role: 'Cajero y Atención al Cliente',
+      funFact: 'Artista y músico en sus ratos libres. Toca el clarinete (aunque sus vecinos no lo aprecien demasiado).',
     },
     {
       id: 'cangrejo',
       name: 'El Señor Cangrejo',
       emoji: '🦀',
       description: 'Propietario del restaurante y guardián de la receta secreta. Lidera el negocio con visión y mucha ambición.',
+      role: 'Propietario y Gerente',
+      funFact: 'La fórmula secreta de la Cangreburger está guardada en una caja fuerte. ¡Nadie la conoce excepto él!',
     },
   ];
 
   private readonly schedule: readonly ScheduleItem[] = [
-    { day: 'Lunes - Jueves', hours: '13:00 - 16:00 / 20:00 - 23:00' },
-    { day: 'Viernes', hours: '13:00 - 16:30 / 20:00 - 23:30' },
-    { day: 'Sábado', hours: '13:00 - 16:30 / 20:00 - 00:00' },
-    { day: 'Domingo', hours: '13:00 - 16:00' },
+    { day: 'Lunes - Jueves', hours: '13:00 - 16:00 / 20:00 - 23:00', tooltip: 'Horario entre semana estándar' },
+    { day: 'Viernes', hours: '13:00 - 16:30 / 20:00 - 23:30', tooltip: '¡Viernes con horario extendido!' },
+    { day: 'Sábado', hours: '13:00 - 16:30 / 20:00 - 00:00', tooltip: 'Abierto hasta medianoche los sábados' },
+    { day: 'Domingo', hours: '13:00 - 16:00', tooltip: 'Solo turno de mediodía los domingos' },
   ];
 
   getCrew(): readonly CrewMember[] {
@@ -39,4 +45,3 @@ export class RestaurantService {
     return this.schedule;
   }
 }
-

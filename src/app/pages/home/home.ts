@@ -7,6 +7,27 @@ import { RouterLink } from '@angular/router';
   templateUrl: './home.html',
 })
 export class HomePageComponent {
+  readonly slides = [
+    {
+      title: 'CANGREBURGER CLÁSICA',
+      image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600',
+      badge: 'LA MÁS PEDIDA',
+      description: 'La receta secreta que ha conquistado Fondo de Bikini. Pan suave, carne jugosa y nuestra salsa inigualable.',
+    },
+    {
+      title: 'PAPAS DE CORAL',
+      image: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=600',
+      badge: 'ACOMPAÑAMIENTO ESTRELLA',
+      description: 'Crujientes, doradas y listas para acompañar cualquier pedido submarino.',
+    },
+    {
+      title: 'BEBIDA DE MEDUSA',
+      image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=600',
+      badge: 'REFRESCANTE',
+      description: 'Refresco burbujeante con toque tropical para bajar el calor del océano.',
+    },
+  ] as const;
+
   readonly cards = [
     {
       title: 'BURGER SECRETA',
@@ -28,4 +49,3 @@ export class HomePageComponent {
     },
   ] as const;
 }
-

@@ -3,7 +3,9 @@
     <div class="row mb-4">
       <div class="col-12">
         <div class="about-panel p-4 p-md-5">
-          <h1 class="display-4 text-warning mb-4 about-history-title">NUESTRA HISTORIA</h1>
+          <h1 class="display-4 text-warning mb-4 about-history-title">
+            <i class="bi bi-clock-history me-2"></i>NUESTRA HISTORIA
+          </h1>
           <p class="lead text-white mb-3">Establecido en 1980 en Fondo de Bikini.</p>
           <p class="text-white-50">El Crustáceo Crujiente era originalmente una casa de retiro llamada "Rusty Krab", que fue adquirida por Don Eugenio Cangrejo. Convertida en el restaurante más exitoso de Fondo de Bikini, es el único lugar donde puedes encontrar la genuina Cangreburger.</p>
           <p class="text-white-50 mb-0">Nuestra filosofía es simple: <strong class="text-warning">"El dinero siempre tiene la razón"</strong>.</p>
@@ -14,11 +16,20 @@
     <div class="row mb-5">
       <div class="col-12">
         <div class="about-panel p-4 p-md-5">
-          <h3 class="about-schedule-title mb-3">HORARIO</h3>
+          <h3 class="about-schedule-title mb-3">
+            <i class="bi bi-calendar-week me-2"></i>HORARIO
+          </h3>
           <div data-section="schedule">
             <ul class="list-unstyled text-white mb-0 text-start schedule-list">
               @for (item of schedule; track item.day) {
-                <li class="mb-2"><strong>{{ item.day }}:</strong> {{ item.hours }}</li>
+                <li class="mb-2 d-flex justify-content-between align-items-center"
+                  data-bs-toggle="tooltip" data-bs-placement="top"
+                  [attr.data-bs-title]="item.tooltip">
+                  <strong>{{ item.day }}:</strong>
+                  <span class="badge bg-dark bg-opacity-50 px-3 py-2">
+                    <i class="bi bi-clock me-1"></i>{{ item.hours }}
+                  </span>
+                </li>
               }
             </ul>
           </div>
@@ -28,18 +39,26 @@
 
     <div class="row text-center mt-5">
       <div class="col-12 mb-5">
-        <h2 class="text-white display-4 about-crew-title">LA TRIPULACIÓN</h2>
+        <h2 class="text-white display-4 about-crew-title">
+          <i class="bi bi-people-fill me-2"></i>LA TRIPULACIÓN
+        </h2>
+        <p class="text-white-50">Haz click en cada personaje para conocerlo mejor</p>
       </div>
 
       @for (member of crew; track member.id) {
         <div class="col-md-4 mb-4">
-          <div class="card crew-card h-100">
+          <div class="card crew-card h-100" role="button"
+            data-bs-toggle="modal" [attr.data-bs-target]="'#modal-' + member.id"
+            tabindex="0">
             <div class="d-flex align-items-center justify-content-center p-3 crew-emoji">
               {{ member.emoji }}
             </div>
             <div class="card-body text-start">
               <h3 class="text-warning crew-name">{{ member.name }}</h3>
-              <p class="text-white-50 mb-0">{{ member.description }}</p>
+              <p class="text-white-50 mb-1">{{ member.description }}</p>
+              <small class="text-muted d-block mt-2">
+                <i class="bi bi-hand-index me-1"></i>Click para más detalles
+              </small>
             </div>
           </div>
         </div>
@@ -48,3 +67,35 @@
   </div>
 </section>
 
+<!-- Modales Bootstrap para cada miembro de la tripulación -->
+@for (member of crew; track member.id) {
+  <div class="modal fade" [id]="'modal-' + member.id" tabindex="-1"
+    [attr.aria-labelledby]="'modalLabel-' + member.id" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content crew-modal-content">
+        <div class="modal-header border-0">
+          <h4 class="modal-title text-warning" [id]="'modalLabel-' + member.id">
+            {{ member.emoji }} {{ member.name }}
+          </h4>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+            aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center mb-3">
+            <span class="display-1">{{ member.emoji }}</span>
+          </div>
+          <h5 class="text-warning mb-2">
+            <i class="bi bi-briefcase me-1"></i>{{ member.role }}
+          </h5>
+          <p class="text-white-50">{{ member.description }}</p>
+          <p class="text-white-50 mb-0">{{ member.funFact }}</p>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-warning btn-sm" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg me-1"></i>Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

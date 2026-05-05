@@ -10,27 +10,51 @@
       </div>
     </div>
 
-    <div class="row g-4">
-      <div class="col-lg-6" *ngFor="let category of categories">
-        <div class="menu-card">
-          <div class="menu-card-header">
-            <span class="menu-card-icon" aria-hidden="true">{{ category.icon }}</span>
-            <h3 class="menu-card-title">{{ category.title }}</h3>
+    <!-- Bootstrap Accordion -->
+    <div class="accordion" id="menuAccordion">
+      @for (category of categories; track category.id; let i = $index) {
+        <div class="accordion-item">
+          <h3 class="accordion-header" [id]="'heading-' + category.id">
+            <button class="accordion-button" [class.collapsed]="i !== 0" type="button"
+              [attr.data-bs-toggle]="'collapse'"
+              [attr.data-bs-target]="'#collapse-' + category.id"
+              [attr.aria-expanded]="i === 0"
+              [attr.aria-controls]="'collapse-' + category.id">
+              <span class="menu-card-icon me-3" aria-hidden="true">{{ category.icon }}</span>
+              <span class="accordion-title-text">{{ category.title }}</span>
+              <span class="badge bg-danger ms-auto me-3">{{ category.items.length }} items</span>
+            </button>
+          </h3>
+          <div [id]="'collapse-' + category.id" class="accordion-collapse collapse"
+            [class.show]="i === 0"
+            [attr.aria-labelledby]="'heading-' + category.id"
+            data-bs-parent="#menuAccordion">
+            <div class="accordion-body">
+              <ul class="list-unstyled menu-list mb-0">
+                @for (item of category.items; track item.id) {
+                  <li class="menu-item">
+                    <div class="menu-item-inner">
+                      <div class="flex-grow-1">
+                        <span class="menu-item-name">{{ item.nombre }}</span>
+                        <small class="menu-item-desc">{{ item.descripcion }}</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <span class="menu-item-price mb-0">{{ item.precio }}</span>
+                        <button class="btn btn-sm btn-outline-warning rounded-circle ms-4 shadow-sm" 
+                                style="width: 32px; height: 32px; padding: 0; display: flex; align-items: center; justify-content: center;"
+                                (click)="cartService.addToCart(item)" 
+                                title="Añadir al ticket">
+                          <i class="bi bi-plus-lg"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                }
+              </ul>
+            </div>
           </div>
-          <ul class="list-unstyled menu-list mb-0">
-            <li class="menu-item" *ngFor="let item of category.items">
-              <div class="menu-item-inner">
-                <div class="flex-grow-1">
-                  <span class="menu-item-name">{{ item.nombre }}</span>
-                  <small class="menu-item-desc">{{ item.descripcion }}</small>
-                </div>
-                <span class="menu-item-price">{{ item.precio }}</span>
-              </div>
-            </li>
-          </ul>
         </div>
-      </div>
+      }
     </div>
   </div>
 </section>
-

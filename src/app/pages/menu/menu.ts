@@ -1,15 +1,16 @@
-import { NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Item } from '../../models/item';
 import { ItemService } from '../../services/item.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-menu-page',
-  imports: [NgFor],
+  imports: [],
   templateUrl: './menu.html',
 })
 export class MenuPageComponent {
   private readonly itemService = inject(ItemService);
+  public readonly cartService = inject(CartService);
   readonly items = this.itemService.getItems();
 
   readonly categories = [
